@@ -13,7 +13,7 @@ myst-parser = {version = "*", extras = ["linkify"]}
 sphinx = "*"
 sphinx-book-theme = "^1.0.0"
 sphinx-copybutton = "*"
-sphinx-design = "^0.3.0"
+sphinx-design = "^0.4.1"
 sphinx-sitemap = "^2.5.1"
 sphinx-notfound-page = "^0.8.3"
 
