@@ -1,0 +1,84 @@
+{
+  description = "syno.dev static website";
+
+  inputs.synopkgs.url = "github:SynoPKG/synopkgs/synopkg-23.05";
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.poetry2syno = {
+    inputs.flake-utils.follows = "flake-utils";
+    inputs.synopkgs.follows = "synopkgs";
+    url = "github:syno-community/poetry2syno";
+  };
+
+  outputs = { self, synopkgs, flake-utils, poetry2syno }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import synopkgs {
+          inherit system;
+          overlays = [ poetry2syno.overlay ];
+        };
+        poetryOverrides = self: super: {
+
+          # Refs https://github.com/syno-community/poetry2syno/issues/218#issuecomment-981615612
+          typing-extensions = super.typing-extensions.overridePythonAttrs (
+            old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ self.flit-core ];
+            }
+          );
+
+          sphinx = super.sphinx.overridePythonAttrs (
+            old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ self.flit-core ];
+            }
+          );
+
+          accessible-pygments = super.accessible-pygments.overridePythonAttrs (
+            old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+            }
+          );
+
+          sphinx-sitemap = super.sphinx-sitemap.overridePythonAttrs (
+            old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+            }
+          );
+
+          sphinx-notfound-page = super.sphinx-notfound-page.overridePythonAttrs (
+            old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [ super.flit-core ];
+            }
+          );
+        };
+      in
+      rec {
+        packages = flake-utils.lib.flattenTree {
+          syno.dev-pyenv = pkgs.poetry2syno.mkPoetryEnv {
+            projectDir = self;
+            python = pkgs.python39;
+            overrides = [
+              (self: super: {
+                pydata-sphinx-theme = super.pydata-sphinx-theme.override { preferWheel = true; };
+                sphinx-book-theme = super.sphinx-book-theme.override { preferWheel = true; };
+              })
+              pkgs.poetry2syno.defaultPoetryOverrides
+              poetryOverrides
+            ];
+          };
+          syno.dev-html = pkgs.stdenv.mkDerivation {
+            name = "syno.dev";
+            src = self;
+            buildInputs = [ packages.syno.dev-pyenv ];
+            buildPhase = ''
+              make html
+            '';
+            installPhase = ''
+              mkdir -p $out
+              cp -R build/html/* $out/
+            '';
+          };
+        };
+        defaultPackage = packages.syno.dev-html;
+      }
+    );
+
+}

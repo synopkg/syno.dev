@@ -1,0 +1,1 @@
+syno-shell --run "python live.py"

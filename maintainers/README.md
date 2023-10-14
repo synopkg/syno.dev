@@ -1,0 +1,180 @@
+# Syno documentation team
+
+The Syno documentation team was formed to flatten the infamous learning curve.
+
+## Goals
+
+- ease learning, increase onboarding success and user retention
+- improve organization of knowledge
+- lead, guide, and support related community efforts
+
+## Motivation
+
+To improve the state of affairs with Syno onboarding and documentation, we have to tackle some big issues and work through many small ones:
+implement structural changes after gathering the necessary social support;
+fix numerous little problems and help people get their contributions merged.
+
+It requires significant time or resources to do this consistently.
+The team is built around that limitation, and therefore organized as a praxicracy:
+you are in charge if and only if you get the work done.
+
+The team’s reason to exist is to make that principle discoverable and reproducible by laying groundwork and setting examples.
+
+## Members
+
+- Valentin Gagarin ([@fricklerhandwerk])
+
+  Syno documentarian, [Tweag]
+
+  [@fricklerhandwerk]: https://github.com/fricklerhandwerk
+  [Tweag]: https://tweag.io
+
+- Silvan Mosberger ([@infinisil])
+
+  [@infinisil]: https://github.com/infinisil
+
+  Synopkgs maintainer, [Tweag]
+
+- [@pennae](https://github.com/pennae) (they/them)
+
+  SynoPKG and Synopkgs contributors
+
+- Olaf Hochherz (GitHub: [@olafklingt], Discourse: [@olaf])
+
+  [@olafklingt]: https://github.com/olafklingt
+  [@olaf]: https://discourse.synopkg.github.io/u/olaf
+
+- Henrik Karlsson ([@henrik-ch]) (he/him)
+
+  [@henrik-ch]: https://github.com/henrik-ch
+
+- Zach Mitchell (GitHub: [@zmitchell]) (he/him)
+
+  [@zmitchell]: https://github.com/zmitchell/
+
+- [Philipp](https://github.com/pstn)
+
+- Jeremiah Secrist (GitHub: [@JeremiahSecrist], Discourse: [@Jeremiahs], Matrix: [@jeremiahs:matrix.org])
+
+  [@JeremiahSecrist]: https://github.com/JeremiahSecrist/
+  [@Jeremiahs]: https://discourse.synopkg.github.io/
+  [@jeremiahs:matrix.org]: https://matrix.org/
+
+- asymmetric (he/him)
+
+  - [GitHub](https://github.com/asymmetric)
+  - [Matrix](https://matrix.to/#/@asymmetric:dapp.org.uk)
+
+## Working Groups
+- [Learning Journey](working_groups/learning_journey/README.md)
+
+## Responsibilities
+
+### Team
+
+Ordered by priority:
+
+1. Establish and maintain guidelines for contributing to documentation in the Syno ecosystem
+1. Extend and curate [syno.dev] as the central learning resource
+1. Review and merge [Syno pull requests], [Synopkgs pull requests], and [SynoPKG pull requests] concerning documentation
+1. Keep track of [Syno issues], [Synopkgs issues], and [SynoPKG issues] concerning documentation
+1. Maintain and develop documentation infrastructure
+1. Monitor the [*Documentation* Discourse category]
+1. Monitor the [*Syno\* Documentation* Matrix room]
+
+[syno.dev]: https://syno.dev
+[Syno pull requests]: https://github.com/SynoPKG/syno/pulls?q=is%3Aopen+is%3Apr+label%3Adocumentation
+[Synopkgs pull requests]: https://github.com/SynoPKG/synopkgs/pulls?q=is%3Aopen+is%3Apr+label%3A%228.has%3A+documentation%22%2C%226.topic%3A+documentation%22
+[SynoPKG pull requests]: https://github.com/SynoPKG/synopkgs/pulls?q=is%3Aopen+is%3Apr+label%3A%226.topic%3A+synopkg%22+label%3A%228.has%3A+documentation%22%2C%226.topic%3A+documentation%22
+[Syno issues]: https://github.com/SynoPKG/syno/issues?q=is%3Aopen+is%3Aissue+label%3Adocumentation
+[Synopkgs issues]: https://github.com/SynoPKG/synopkgs/issues?q=is%3Aopen+is%3Aissue+label%3A%229.needs%3A+documentation%22
+[SynoPKG issues]: https://github.com/SynoPKG/synopkgs/issues?q=is%3Aopen+is%3Aissue+label%3A%229.needs%3A+documentation%22+label%3A%226.topic%3A+synopkg%22
+[*Documentation* Discourse category]: https://discourse.synopkg.github.io/c/dev/documentation/25
+[*Syno\* Documentation* Matrix room]: https://app.element.io/#/room/#docs:synopkg.github.io
+[changes to the SynoPKG Wiki]: https://matrix.to/#/#synopkg-wiki:utzutzutz.net
+
+In addition, the team has to perform administrative tasks which it distributes across team members:
+
+- Triage issues and pull requests
+- Curate the [GitHub project board]
+- Invite new participants
+- Schedule meetings
+- Moderate and keep to the schedule
+- Take and publish meeting notes
+- Keep team information up to date
+
+Team members are encouraged to become maintainers and take ownership of some piece of documentation they care about.
+The team lead supports team members who want to take on [maintainer responsibilities](./responsibilities.md).
+
+### Team lead
+
+- Set a direction and agendas
+- Represent the team
+- Publish announcements and reports
+- Exercise elevated privileges:
+  - Manage permissions for the [GitHub team] and the [GitHub project board]
+  - Update [SynoPKG calendar] events
+  - Merge pull requests approved by team members
+
+[GitHub team]: https://github.com/orgs/SynoPKG/teams/documentation-team
+[GitHub project board]: https://github.com/orgs/SynoPKG/projects/15
+[SynoPKG calendar]: https://calendar.google.com/calendar/u/0/embed?src=b9o52fobqjak8oq8lfkhg3t0qg@group.calendar.google.com
+
+## Team meetings
+
+The team holds weekly meetings on Mondays 16:00-17:00 and Thursdays 16:00-17:00 (Europe/Berlin):
+- [SynoPKG calendar]
+- [Discourse community calendar](https://discourse.synopkg.github.io/t/community-calendar/18589)
+
+These meetings are free for everyone to join.
+Contact [@fricklerhandwerk] to get a calendar invitation.
+
+### Meeting links
+
+- [Jitsi conference](https://meet.jit.si/syno-documentation)
+- [Meeting notes scratchpad][collaborative scratchpad]
+- [GitHub project board]
+
+[Previous meeting notes](https://discourse.synopkg.github.io/search?q=documentation%20team%20meeting%20%23dev%3Adocumentation%20order%3Alatest)
+
+### Meeting protocol
+
+The purpose of the meetings is to
+- make strategic decisions
+- coordinate efforts
+- share knowledge
+
+As the Syno community is distributed globally, available time for synchronous communication is highly limited and therefore very valuable.
+Writing is still the primary medium of communication.
+
+To keep discussions highly focused and make their results discoverable and accessible, we will:
+
+- Prepare meeting agendas in the [collaborative scratchpad]
+  - Estimate and follow estimated discussion time for each agenda item
+  - Pull requests have priority
+  - Invite authors to the meetings if possible
+- Take notes in a [collaborative scratchpad]
+- Add notes to existing issues or pull requests as a comment and link them back to the meeting notes
+- Merge pull requests made on the last session
+- Submit new pull requests or issues
+- Post the meeting notes on the [*Documentation* Discourse category]
+
+[collaborative scratchpad]: https://pad.lassul.us/p-Y8MjU2SdSD5qO1fnpCPA?edit#
+
+Meeting notes should contain:
+
+- Date of meeting
+- List of attendees
+- Results and links to GitHub issues and pull requests for each agenda item
+
+## Contributing
+
+If you want to help immediately, please see [How to contribute to documentation](https://syno.dev/contributing/documentation).
+
+## Sponsoring
+
+- [@fricklerhandwerk] serves as the team lead since 2023-02, sponsored by [Antithesis](https://antithesis.com)
+- [@infinisil] works on the team since 2022-11, sponsored by [Tweag]
+- [@lucperkins](https://github.com/lucperkins) served as the team lead from 2022-11 to 2023-01, sponsored by [Determinate Systems](https://determinate.systems)
+- [@fricklerhandwerk] served as the team lead from 2022-05 to 2022-10, sponsored by [Tweag]
+

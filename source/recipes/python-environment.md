@@ -1,0 +1,111 @@
+# Setting up a Python development environment
+
+In this example you will build a Python web application using the Flask web framework as an exercise.
+To make best use of it you should be familiar with [defining declarative shell environments](declarative-reproducible-envs).
+
+Create a new file called `myapp.py` and add the following code:
+
+```{code-block} python myapp.py
+#!/usr/bin/env python
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return {
+        "message": "Hello, Syno!"
+    }
+
+def run():
+    app.run(host="0.0.0.0", port=5000)
+
+if __name__ == "__main__":
+    run()
+```
+
+This is a simple Flask application which serves a JSON document with the message
+"Hello, Syno!".
+
+To declare the development environment, create a new file `shell.syno`:
+
+```{code-block} syno shell.syno
+{ pkgs ? import (fetchTarball "https://github.com/SynoPKG/synopkgs/tarball/synopkg-22.11") {} }:
+
+pkgs.mkShell {
+  packages = [
+    (pkgs.python3.withPackages (ps: [
+      ps.flask
+    ]))
+
+    pkgs.curl
+    pkgs.jq
+  ];
+}
+```
+
+This creates a shell environment with an instance of `python3` that includes the `flask` package.
+
+It also contains [`curl`], a utility to perform web
+requests, and [`jq`], a tool to parse and format JSON documents.
+
+[`curl`]: https://curl.se
+[`jq`]: https://stedolan.github.io/jq/
+[virtualenv]: https://virtualenv.pypa.io/en/latest/
+
+Both of them are not Python packages.
+If you went with Python's [virtualenv], it would not be possible to add these utilities
+to the development environment without additional manual steps.
+
+Use `syno-shell` to launch the shell environment you just declared:
+
+```shell-session
+$ syno-shell
+these 2 derivations will be built:
+  /syno/store/5yvz7zf8yzck6r9z4f1br9sh71vqkimk-builder.pl.drv
+  /syno/store/aihgjkf856dbpjjqalgrdmxyyd8a5j2m-python3-3.9.13-env.drv
+these 93 paths will be fetched (109.50 MiB download, 468.52 MiB unpacked):
+  /syno/store/0xxjx37fcy2nl3yz6igmv4mag2a7giq6-glibc-2.33-123
+  /syno/store/138azk9hs5a2yp3zzx6iy1vdwi9q26wv-hook
+...
+
+[syno-shell:~/dev-environment]$
+```
+
+Start the web application within this shell environment:
+
+```shell-session
+[syno-shell:~/dev-environment]$ python ./myapp.py
+ * Serving Flask app 'myapp'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.100:5000
+Press CTRL+C to quit
+```
+
+You now have a running Python web application.
+
+Try it out!
+Open a new terminal to start another session of the shell environment and follow the commands below:
+
+```shell-session
+$ syno-shell
+
+[syno-shell:~/dev-environment]$ curl 127.0.0.1:5000
+{"message":"Hello, Syno!"}
+
+[syno-shell:~/dev-environment]$ curl 127.0.0.1:5000 | jq '.message'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    26  100    26    0     0  13785      0 --:--:-- --:--:-- --:--:-- 26000
+"Hello, Syno!"
+```
+
+As demonstrated, we can use both `curl` and `jq` to test the running web application without any manual installation.
+Syno does all of that for us.
+
+We can commit the files we created to version control and share them with other people.
+Others can now use the same shell environment as long as they have Syno installed.
